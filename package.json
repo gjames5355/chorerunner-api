@@ -1,0 +1,44 @@
+{
+  "name": "express-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate": "postgrator --config postgrator-config.js",
+    "migrate:production": "env SSL=true DATABASE_URL=$(heroku config:get DATABASE_URL) npm run migrate",
+    "migrate:test": "set NODE_ENV=test&& npm run migrate",
+    "test": "mocha --require test/setup.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "predeploy": "npm audit && npm run migrate:production",
+    "deploy": "git push heroku master"
+  },
+  "keywords": [],
+  "engines": {
+    "node": "12.12.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cli": "^1.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.3",
+    "morgan": "^1.9.1",
+    "pg": "^7.14.0",
+    "postgrator": "^3.10.2",
+    "postgrator-cli": "^3.3.0",
+    "shortid": "^2.2.15",
+    "xss": "^1.0.6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.2",
+    "supertest": "^4.0.2"
+  }
+}
